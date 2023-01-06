@@ -10,4 +10,8 @@ public class TriviaApplication {
 		SpringApplication.run(TriviaApplication.class, args);
 	}
 
+	public String hello() {
+		return "Hello Everyone";
+	}
+
 }
