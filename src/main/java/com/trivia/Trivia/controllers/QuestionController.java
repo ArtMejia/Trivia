@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/questions")
 public class QuestionController {
@@ -18,6 +20,12 @@ public class QuestionController {
     public ResponseEntity<?> createQuestion(@RequestBody Questions newQuestion) {
         Questions createdQuestion = questionRepository.save(newQuestion);
         return new ResponseEntity<>(createdQuestion, HttpStatus.CREATED);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> getAllQuestions() {
+        List<Questions> allQuestions = questionRepository.findAll();
+        return new ResponseEntity<>(allQuestions, HttpStatus.OK);
     }
 
 }

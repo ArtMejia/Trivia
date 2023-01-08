@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Questions {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String question;
