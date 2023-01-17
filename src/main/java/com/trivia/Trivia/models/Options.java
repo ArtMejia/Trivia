@@ -17,5 +17,4 @@ import jakarta.persistence.*;
 //      private Questions question;
 
 
-
 //}
