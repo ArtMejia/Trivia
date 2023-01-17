@@ -1,17 +1,29 @@
 package com.trivia.Trivia.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class User {
 
     @Id
-    private String username;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -48,7 +60,8 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName) {
+    public User(Integer id, String username, String password, String firstName, String lastName) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
