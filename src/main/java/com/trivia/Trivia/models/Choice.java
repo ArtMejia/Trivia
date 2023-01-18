@@ -1,21 +1,22 @@
 package com.trivia.Trivia.models;
 
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 
 @Entity
-public class Option {
+
+public class Choice {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String value;
 
     private boolean isAnswer;
 
+
     @ManyToOne
-    @JoinColumn(name = "questions_id", referencedColumnName = "id")
-    @JsonIncludeProperties("id")
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
+
     private Question question;
 
     public Integer getId() {
@@ -50,9 +51,9 @@ public class Option {
         this.question = question;
     }
 
-    public Option() { }
+    public Choice() { }
 
-    public Option(Integer id, String value, boolean isAnswer, Question question) {
+    public Choice(Integer id, String value, boolean isAnswer, Question question) {
         this.id = id;
         this.value = value;
         this.isAnswer = isAnswer;
@@ -63,8 +64,8 @@ public class Option {
 /*
     Each question has 4 options
     Question: "What color is the sky?"
-    Option 1: red   false
-    Option 2: green false
-    Option 3: white false
-    Option 4: blue  true
+    Choice 1: red   false
+    Choice 2: green false
+    Choice 3: white false
+    Choice 4: blue  true
  */

@@ -5,20 +5,22 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String question;
 
-    @OneToMany(mappedBy = "question")
-    private List<Option> choices;
+    @OneToMany
+    @JoinColumn(name = "option_id", referencedColumnName = "id")
+    private List<Choice> choices;
 
     public Question() {
     }
 
-    public Question(Integer id, String question, List<Option> choices) {
+    public Question(Integer id, String question, List<Choice> choices) {
         this.id = id;
         this.question = question;
         this.choices = choices;
@@ -40,11 +42,11 @@ public class Question {
         this.question = question;
     }
 
-    public List<Option> getChoices() {
+    public List<Choice> getChoices() {
         return choices;
     }
 
-    public void setChoices(List<Option> choices) {
+    public void setChoices(List<Choice> choices) {
         this.choices = choices;
     }
 }

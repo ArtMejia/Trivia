@@ -23,6 +23,7 @@ public class QuestionController {
         return new ResponseEntity<>(createdQuestion, HttpStatus.CREATED);
     }
 
+
     @PostMapping("/{id}")
     public ResponseEntity<Question> updateQuestionById(@RequestBody Question questionData, @PathVariable Integer id) {
         Question question = questionRepository.findById(id).orElseThrow(
