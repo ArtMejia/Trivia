@@ -1,6 +1,6 @@
 package com.trivia.Trivia.controllers;
 
-import com.trivia.Trivia.models.Questions;
+import com.trivia.Trivia.models.Question;
 import com.trivia.Trivia.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,14 +18,14 @@ public class QuestionController {
     private QuestionRepository questionRepository;
 
     @PostMapping
-    public ResponseEntity<?> createQuestion(@RequestBody Questions newQuestion) {
-        Questions createdQuestion = questionRepository.save(newQuestion);
+    public ResponseEntity<?> createQuestion(@RequestBody Question newQuestion) {
+        Question createdQuestion = questionRepository.save(newQuestion);
         return new ResponseEntity<>(createdQuestion, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Questions> updateQuestionById(@RequestBody Questions questionData, @PathVariable Integer id) {
-        Questions question = questionRepository.findById(id).orElseThrow(
+    public ResponseEntity<Question> updateQuestionById(@RequestBody Question questionData, @PathVariable Integer id) {
+        Question question = questionRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
 
@@ -38,13 +38,13 @@ public class QuestionController {
 
     @GetMapping
     public ResponseEntity<?> getAllQuestions() {
-        List<Questions> allQuestions = questionRepository.findAll();
+        List<Question> allQuestions = questionRepository.findAll();
         return new ResponseEntity<>(allQuestions, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteQuestionById (@PathVariable Integer id) {
-        Questions question = questionRepository.findById(id).orElseThrow(
+        Question question = questionRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         questionRepository.deleteById(id);

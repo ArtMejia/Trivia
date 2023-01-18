@@ -5,26 +5,23 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Questions {
+public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String question;
 
-//    @OneToOne
-//    private Options answer;
+    @OneToMany(mappedBy = "question")
+    private List<Option> choices;
 
-//    @OneToMany(mappedBy = "question")
-//    private List<Options> choices;
-
-
-    public Questions() {
+    public Question() {
     }
 
-    public Questions(Integer id, String question) {
+    public Question(Integer id, String question, List<Option> choices) {
         this.id = id;
         this.question = question;
+        this.choices = choices;
     }
 
     public Integer getId() {
@@ -41,5 +38,13 @@ public class Questions {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public List<Option> getChoices() {
+        return choices;
+    }
+
+    public void setChoices(List<Option> choices) {
+        this.choices = choices;
     }
 }
