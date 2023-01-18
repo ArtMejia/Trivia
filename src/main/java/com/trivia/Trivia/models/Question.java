@@ -49,4 +49,8 @@ public class Question {
     public void setChoices(List<Choice> choices) {
         this.choices = choices;
     }
+
+    public void addChoiceToList(Choice choice) {
+        this.choices.add(choice);
+    }
 }

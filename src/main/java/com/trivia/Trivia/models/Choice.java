@@ -35,11 +35,11 @@ public class Choice {
         this.value = value;
     }
 
-    public boolean isAnswer() {
+    public boolean getIsAnswer() {
         return isAnswer;
     }
 
-    public void setAnswer(boolean answer) {
+    public void setIsAnswer(boolean answer) {
         isAnswer = answer;
     }
 
